@@ -23,7 +23,7 @@ def create_parser(parent):
     new = subparsers.add_parser('new', help='Create new model from file')
     new.add_argument('model_file', type=str, help='Path to model file')
 
-    # Get-status
+    # Get status
     get_status = subparsers.add_parser('get-status', help='Get model status')
     def get_status_func(args):
         m = get_model(get_status, args)
