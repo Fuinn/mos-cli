@@ -64,6 +64,14 @@
 <li><a class="reference internal" href="#delete">delete</a></li>
 <li><a class="reference internal" href="#get-source">get-source</a></li>
 <li><a class="reference internal" href="#get-status">get-status</a></li>
+<li><a class="reference internal" href="#set-interface-file">set-interface-file</a><ul>
+<li><a class="reference internal" href="#Positional Arguments_repeat2">Positional Arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#set-interface-object">set-interface-object</a><ul>
+<li><a class="reference internal" href="#Positional Arguments_repeat3">Positional Arguments</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -146,7 +154,7 @@
 <h3>model<a class="headerlink" href="#model" title="Permalink to this heading"></a></h3>
 <p>model commands</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">name</span> <span class="n">NAME</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span> <span class="n">ID</span><span class="p">]</span>
-             <span class="p">{</span><span class="nb">list</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">inputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">outputs</span><span class="p">,</span><span class="n">new</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">source</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">status</span><span class="p">}</span>
+             <span class="p">{</span><span class="nb">list</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">inputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">outputs</span><span class="p">,</span><span class="n">new</span><span class="p">,</span><span class="n">delete</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">source</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">status</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">file</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="nb">object</span><span class="p">}</span>
              <span class="o">...</span>
 </pre></div>
 </div>
@@ -187,13 +195,13 @@
 <section id="new">
 <h5>new<a class="headerlink" href="#new" title="Permalink to this heading"></a></h5>
 <p>create new model from file</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">new</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">model_file</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">new</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">model_file_path</span>
 </pre></div>
 </div>
 <section id="Positional Arguments_repeat1">
 <h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat1" title="Permalink to this heading"></a></h6>
 <dl class="option-list">
-<dt><kbd>model_file</kbd></dt>
+<dt><kbd>model_file_path</kbd></dt>
 <dd><p>path to model file</p>
 </dd>
 </dl>
@@ -219,6 +227,42 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">get</span><span class="o">-</span><span class="n">status</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
 </pre></div>
 </div>
+</section>
+<section id="set-interface-file">
+<h5>set-interface-file<a class="headerlink" href="#set-interface-file" title="Permalink to this heading"></a></h5>
+<p>set model interface file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">file</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">file_name</span> <span class="n">file_path</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat2">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat2" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>file_name</kbd></dt>
+<dd><p>name of interface file</p>
+</dd>
+<dt><kbd>file_path</kbd></dt>
+<dd><p>path to interface file</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="set-interface-object">
+<h5>set-interface-object<a class="headerlink" href="#set-interface-object" title="Permalink to this heading"></a></h5>
+<p>set model interface object</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="nb">object</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">obj_name</span> <span class="n">obj_data</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat3">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat3" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>obj_name</kbd></dt>
+<dd><p>name of interface object</p>
+</dd>
+<dt><kbd>obj_data</kbd></dt>
+<dd><p>interface object data</p>
+</dd>
+</dl>
+</section>
 </section>
 </section>
 </section>
