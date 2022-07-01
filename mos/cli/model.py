@@ -30,6 +30,13 @@ def create_parser(parent):
             i.delete_model_with_name(args.name)
     delete.set_defaults(func=delete_func)
 
+    # Get execution log
+    get_exec_log = subparsers.add_parser('get-execution-log', help='get model run execution log')
+    def get_exec_log_func(args):
+        m = get_model(parser, args)
+        return m.get_execution_log()
+    get_exec_log.set_defaults(func=get_exec_log_func)
+
     # Get source
     get_source = subparsers.add_parser('get-source', help='get model source code')
     def get_source_func(args):
@@ -72,6 +79,30 @@ def create_parser(parent):
         for o in m.__get_interface_objects__(type='output'):
             print('{} (object)'.format(o['name']))
     lst_outputs.set_defaults(func=lst_outputs_func)
+
+    # List variables
+    lst_variables = subparsers.add_parser('list-variables', help='list model variables')
+    def lst_variables_func(args):
+        m = get_model(parser, args)
+        for v in m.__get_variables__():
+            print(v['name'])
+    lst_variables.set_defaults(func=lst_variables_func)
+
+    # List functions
+    lst_functions = subparsers.add_parser('list-functions', help='list model functions')
+    def lst_functions_func(args):
+        m = get_model(parser, args)
+        for f in m.__get_functions__():
+            print(f['name'])
+    lst_functions.set_defaults(func=lst_functions_func)
+
+    # List constraints
+    lst_constraints = subparsers.add_parser('list-constraints', help='list model constraints')
+    def lst_constraints_func(args):
+        m = get_model(parser, args)
+        for c in m.__get_constraints__():
+            print(c['name'])
+    lst_constraints.set_defaults(func=lst_constraints_func)
 
     # New
     new = subparsers.add_parser('new', help='create new model from file')
