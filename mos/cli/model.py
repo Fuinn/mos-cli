@@ -20,6 +20,30 @@ def create_parser(parent):
     parser.add_argument('--id', type=str, help='model id')
     subparsers = parser.add_subparsers(help="sub-command help")
 
+    # Delete
+    delete = subparsers.add_parser('delete', help='delete model')
+    def delete_func(args):
+        i = Interface(url=args.url, token=args.token)
+        if args.id:
+            i.delete_model_with_id(args.id)
+        if args.name:
+            i.delete_model_with_name(args.name)
+    delete.set_defaults(func=delete_func)
+
+    # Get source
+    get_source = subparsers.add_parser('get-source', help='get model source code')
+    def get_source_func(args):
+        m = get_model(parser, args)
+        return m.get_source()
+    get_source.set_defaults(func=get_source_func)
+
+    # Get status
+    get_status = subparsers.add_parser('get-status', help='get model status')
+    def get_status_func(args):
+        m = get_model(parser, args)
+        return m.get_status()
+    get_status.set_defaults(func=get_status_func)
+
     # List
     lst = subparsers.add_parser('list', help='list models')
     def lst_func(args):
@@ -57,29 +81,14 @@ def create_parser(parent):
         i.new_model(args.model_file, quiet=False)
     new.set_defaults(func=new_func)
 
-    # Delete
-    delete = subparsers.add_parser('delete', help='delete model')
-    def delete_func(args):
-        i = Interface(url=args.url, token=args.token)
-        if args.id:
-            i.delete_model_with_id(args.id)
-        if args.name:
-            i.delete_model_with_name(args.name)
-    delete.set_defaults(func=delete_func)
-
-    # Get source
-    get_source = subparsers.add_parser('get-source', help='get model source code')
-    def get_source_func(args):
+    # Run
+    run = subparsers.add_parser('run', help='run model')
+    run.add_argument('--non-blocking', action='store_true', help='model run without blocking command execution')
+    run.add_argument('--poll_time', type=int, default=1, help='polling time in seconds when blocking')
+    def run_func(args):
         m = get_model(parser, args)
-        return m.get_source()
-    get_source.set_defaults(func=get_source_func)
-
-    # Get status
-    get_status = subparsers.add_parser('get-status', help='get model status')
-    def get_status_func(args):
-        m = get_model(parser, args)
-        return m.get_status()
-    get_status.set_defaults(func=get_status_func)
+        m.run(blocking=not args.non_blocking, poll_time=args.poll_time)
+    run.set_defaults(func=run_func)
 
     # Set interfacefile
     set_int_file = subparsers.add_parser('set-interface-file', help='set model interface file')
