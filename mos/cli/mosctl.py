@@ -6,8 +6,8 @@ def create_parser():
 
     parser = argparse.ArgumentParser(prog='mosctl')
 
-    parser.add_argument('--url', type=str, help='Backend URL (defaults to using env vars MOS_BACKEND_HOST and MOS_BACKEND_PORT)')
-    parser.add_argument('--token', type=str, help='User token (defaults to using env var MOS_BACKEND_TOKEN')
+    parser.add_argument('--url', type=str, help='backend url (defaults to using env vars MOS_BACKEND_HOST and MOS_BACKEND_PORT)')
+    parser.add_argument('--token', type=str, help='user token (defaults to using env var MOS_BACKEND_TOKEN')
     parser.set_defaults(func=lambda args: None)
 
     # Subcommands
