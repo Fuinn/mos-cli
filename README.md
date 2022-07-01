@@ -10,9 +10,15 @@ pip install mos-cli
 
 ## Documentation
 
+Click here to view the documentation:
+
+[![Documentation](https://github.com/Fuinn/mos-cli/actions/workflows/documentation.yml/badge.svg?branch=master)](https://Fuinn.github.io/mos-cli)
+
+Or, use commands of the following form from the terminal:
+
 ```
 mosctl --help
-mosctl SUBCOMMAND --help
+mosctl SUBCOMMAND1 ... SUBCOMMANDN --help
 ```
 
 ## Examples
