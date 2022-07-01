@@ -1,6 +1,6 @@
 import argparse
-import mos.cli.user as user
-import mos.cli.model as model
+from . import user
+from . import model
 
 def create_parser():
 
@@ -23,5 +23,7 @@ def main():
     return args.func(args)
     
 if __name__ == "__main__":
-    print(main())
+    r = main()
+    if r is not None:
+        print(r)
 

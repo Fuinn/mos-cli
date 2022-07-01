@@ -19,9 +19,32 @@ def create_parser(parent):
     parser.add_argument('--id', type=str, help='Model ID')
     subparsers = parser.add_subparsers(help="sub-command help")
 
+    # List
+    lst = subparsers.add_parser('list', help='List models')
+    def lst_func(args):
+        i = Interface(url=args.url, token=args.token)
+        models = i.get_models()
+        for m in models:
+            print('{} (id={})'.format(m['name'], m['id']))
+    lst.set_defaults(func=lst_func)
+
     # New
     new = subparsers.add_parser('new', help='Create new model from file')
     new.add_argument('model_file', type=str, help='Path to model file')
+    def new_func(args):
+        i = Interface(url=args.url, token=args.token)
+        i.new_model(args.model_file, quiet=False)
+    new.set_defaults(func=new_func)
+
+    # Delete
+    delete = subparsers.add_parser('delete', help='Delete model')
+    def delete_func(args):
+        i = Interface(url=args.url, token=args.token)
+        if args.id:
+            i.delete_model_with_id(args.id)
+        if args.name:
+            i.delete_model_with_name(args.name)
+    delete.set_defaults(func=delete_func)
 
     # Get status
     get_status = subparsers.add_parser('get-status', help='Get model status')
