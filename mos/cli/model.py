@@ -1,3 +1,4 @@
+import json
 import argparse
 from mos.interface import Interface
 
@@ -31,7 +32,7 @@ def create_parser(parent):
     # List inputs
     lst_inputs = subparsers.add_parser('list-inputs', help='list model inputs')
     def lst_inputs_func(args):
-        m = get_model(get_source, args)
+        m = get_model(parser, args)
         for f in m.__get_interface_files__(type='input'):
             print('{} (file)'.format(f['name']))
         for o in m.__get_interface_objects__(type='input'):
@@ -41,7 +42,7 @@ def create_parser(parent):
     # List outputs
     lst_outputs = subparsers.add_parser('list-outputs', help='list model outputs')
     def lst_outputs_func(args):
-        m = get_model(get_source, args)
+        m = get_model(parser, args)
         for f in m.__get_interface_files__(type='output'):
             print('{} (file)'.format(f['name']))
         for o in m.__get_interface_objects__(type='output'):
@@ -50,7 +51,7 @@ def create_parser(parent):
 
     # New
     new = subparsers.add_parser('new', help='create new model from file')
-    new.add_argument('model_file', type=str, help='path to model file')
+    new.add_argument('model_file_path', type=str, help='path to model file')
     def new_func(args):
         i = Interface(url=args.url, token=args.token)
         i.new_model(args.model_file, quiet=False)
@@ -69,17 +70,36 @@ def create_parser(parent):
     # Get source
     get_source = subparsers.add_parser('get-source', help='get model source code')
     def get_source_func(args):
-        m = get_model(get_source, args)
+        m = get_model(parser, args)
         return m.get_source()
     get_source.set_defaults(func=get_source_func)
 
     # Get status
     get_status = subparsers.add_parser('get-status', help='get model status')
     def get_status_func(args):
-        m = get_model(get_status, args)
+        m = get_model(parser, args)
         return m.get_status()
     get_status.set_defaults(func=get_status_func)
 
+    # Set interfacefile
+    set_int_file = subparsers.add_parser('set-interface-file', help='set model interface file')
+    set_int_file.add_argument('file_name', type=str, help='name of interface file')
+    set_int_file.add_argument('file_path', type=str, help='path to interface file')
+    def set_int_file_func(args):
+        m = get_model(parser, args)
+        m.set_interface_file(args.file_name, args.file_path)
+    set_int_file.set_defaults(func=set_int_file_func)
+
+    # Set interface object
+    set_int_obj = subparsers.add_parser('set-interface-object', help='set model interface object')
+    set_int_obj.add_argument('obj_name', type=str, help='name of interface object')
+    set_int_obj.add_argument('obj_data', type=str, help='interface object data')
+    def set_int_obj_func(args):
+        m = get_model(parser, args)
+        m.set_interface_object(args.obj_name, json.loads(args.obj_data))
+    set_int_obj.set_defaults(func=set_int_obj_func)
+
+    # Parser ready
     return parser
 
 
