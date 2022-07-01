@@ -29,7 +29,8 @@ author = 'Fuinn'
 # ones.
 extensions = [
     'sphinx_rtd_theme',
-    'sphinxarg.ext'   
+    'sphinxarg.ext',
+    'sphinx.ext.githubpages',   
 ]
 
 # Add any paths that contain templates here, relative to this directory.
