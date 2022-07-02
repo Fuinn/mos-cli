@@ -1,4 +1,5 @@
 import json
+import tempfile
 import argparse
 from mos.interface import Interface
 
@@ -93,6 +94,26 @@ def create_parser(parent):
             ))
     get_constr_state.set_defaults(func=get_constr_state_func)
 
+    # Get interface file
+    get_int_file = subparsers.add_parser('get-interface-file', help='get interface file')
+    get_int_file.add_argument('file_name', type=str, help='name of interface file')
+    def get_int_file_func(args):
+        m = get_model(parser, args)
+        f = tempfile.NamedTemporaryFile(delete=True)
+        m.get_interface_file(args.file_name, filepath=f.name)
+        print(f.read().decode('utf-8'))
+        f.close()
+    get_int_file.set_defaults(func=get_int_file_func)
+
+    # Get interface object
+    get_int_obj = subparsers.add_parser('get-interface-object', help='get interface object')
+    get_int_obj.add_argument('obj_name', type=str, help='name of interface object')
+    def get_int_obj_func(args):
+        m = get_model(parser, args)
+        o = m.get_interface_object(args.obj_name)
+        print(json.dumps(o, indent=4))
+    get_int_obj.set_defaults(func=get_int_obj_func)
+
     # List
     lst = subparsers.add_parser('list', help='list models')
     def lst_func(args):
@@ -170,7 +191,7 @@ def create_parser(parent):
         m.run(blocking=not args.non_blocking, poll_time=args.poll_time)
     run.set_defaults(func=run_func)
 
-    # Set interfacefile
+    # Set interface file
     set_int_file = subparsers.add_parser('set-interface-file', help='set model interface file')
     set_int_file.add_argument('file_name', type=str, help='name of interface file')
     set_int_file.add_argument('file_path', type=str, help='path to interface file')
