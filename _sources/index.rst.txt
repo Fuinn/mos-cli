@@ -3,8 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+##########################
 MOS Command-Line Interface
-==========================
+##########################
+
+############
+Installation
+############
+
+Install the MOS command-line interface ``mosctl`` by executing::
+
+   pip install mos-cli
+
+#####
+Usage
+#####
 
 .. argparse::
    :module: mos.cli.mosctl
