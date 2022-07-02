@@ -51,6 +51,48 @@ def create_parser(parent):
         return m.get_status()
     get_status.set_defaults(func=get_status_func)
 
+    # Get variable state
+    get_var_state = subparsers.add_parser('get-variable-state', help='get variable state')
+    get_var_state.add_argument('var_name', type=str, help='variable name')
+    def get_var_state_func(args):
+        m = get_model(parser, args)
+        state = m.get_variable_state(args.var_name, field='all', typed=False)
+        keys = ['index', 'label', 'kind', 'value', 'lower_bound', 'upper_bound']
+        print(', '.join(keys))
+        for s in state:
+            print('{}, {}, {}, {:.5e}, {:.5e}, {:.5e}'.format(
+                *[s[key] for key in keys]
+            ))
+    get_var_state.set_defaults(func=get_var_state_func)
+
+    # Get function state
+    get_func_state = subparsers.add_parser('get-function-state', help='get function state')
+    get_func_state.add_argument('func_name', type=str, help='function name')
+    def get_func_state_func(args):
+        m = get_model(parser, args)
+        state = m.get_function_state(args.func_name, field='all', typed=False)
+        keys = ['index', 'label', 'value']
+        print(', '.join(keys))
+        for s in state:
+            print('{}, {}, {:.5e}'.format(
+                *[s[key] for key in keys]
+            ))
+    get_func_state.set_defaults(func=get_func_state_func)
+
+    # Get constraint state
+    get_constr_state = subparsers.add_parser('get-constraint-state', help='get constraint state')
+    get_constr_state.add_argument('constr_name', type=str, help='constraint name')
+    def get_constr_state_func(args):
+        m = get_model(parser, args)
+        state = m.get_constraint_state(args.constr_name, field='all', typed=False)
+        keys = ['index', 'label', 'kind', 'dual', 'violation']
+        print(', '.join(keys))
+        for s in state:
+            print('{}, {}, {}, {:.5e}, {:.5e}'.format(
+                *[s[key] for key in keys]
+            ))
+    get_constr_state.set_defaults(func=get_constr_state_func)
+
     # List
     lst = subparsers.add_parser('list', help='list models')
     def lst_func(args):
@@ -59,6 +101,13 @@ def create_parser(parent):
         for m in models:
             print('{} (id={})'.format(m['name'], m['id']))
     lst.set_defaults(func=lst_func)
+
+    # List components
+    lst_components = subparsers.add_parser('list-components', help='list all model components')
+    def lst_comp_func(args):
+        m = get_model(parser, args)
+        m.show_components()
+    lst_components.set_defaults(func=lst_comp_func)
 
     # List inputs
     lst_inputs = subparsers.add_parser('list-inputs', help='list model inputs')
