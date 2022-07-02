@@ -58,14 +58,27 @@
 <li><a class="reference internal" href="#get-execution-log">get-execution-log</a></li>
 <li><a class="reference internal" href="#get-source">get-source</a></li>
 <li><a class="reference internal" href="#get-status">get-status</a></li>
+<li><a class="reference internal" href="#get-variable-state">get-variable-state</a><ul>
+<li><a class="reference internal" href="#Positional Arguments_repeat1">Positional Arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#get-function-state">get-function-state</a><ul>
+<li><a class="reference internal" href="#Positional Arguments_repeat2">Positional Arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#get-constraint-state">get-constraint-state</a><ul>
+<li><a class="reference internal" href="#Positional Arguments_repeat3">Positional Arguments</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#list">list</a></li>
+<li><a class="reference internal" href="#list-components">list-components</a></li>
 <li><a class="reference internal" href="#list-inputs">list-inputs</a></li>
 <li><a class="reference internal" href="#list-outputs">list-outputs</a></li>
 <li><a class="reference internal" href="#list-variables">list-variables</a></li>
 <li><a class="reference internal" href="#list-functions">list-functions</a></li>
 <li><a class="reference internal" href="#list-constraints">list-constraints</a></li>
 <li><a class="reference internal" href="#new">new</a><ul>
-<li><a class="reference internal" href="#Positional Arguments_repeat1">Positional Arguments</a></li>
+<li><a class="reference internal" href="#Positional Arguments_repeat4">Positional Arguments</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#run">run</a><ul>
@@ -73,11 +86,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#set-interface-file">set-interface-file</a><ul>
-<li><a class="reference internal" href="#Positional Arguments_repeat2">Positional Arguments</a></li>
+<li><a class="reference internal" href="#Positional Arguments_repeat5">Positional Arguments</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#set-interface-object">set-interface-object</a><ul>
-<li><a class="reference internal" href="#Positional Arguments_repeat3">Positional Arguments</a></li>
+<li><a class="reference internal" href="#Positional Arguments_repeat6">Positional Arguments</a></li>
 </ul>
 </li>
 </ul>
@@ -162,7 +175,7 @@
 <h3>model<a class="headerlink" href="#model" title="Permalink to this heading"></a></h3>
 <p>model commands</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">name</span> <span class="n">NAME</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="nb">id</span> <span class="n">ID</span><span class="p">]</span>
-             <span class="p">{</span><span class="n">delete</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">execution</span><span class="o">-</span><span class="n">log</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">source</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">status</span><span class="p">,</span><span class="nb">list</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">inputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">outputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">variables</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">functions</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">constraints</span><span class="p">,</span><span class="n">new</span><span class="p">,</span><span class="n">run</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">file</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="nb">object</span><span class="p">}</span>
+             <span class="p">{</span><span class="n">delete</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">execution</span><span class="o">-</span><span class="n">log</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">source</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">status</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">variable</span><span class="o">-</span><span class="n">state</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">state</span><span class="p">,</span><span class="n">get</span><span class="o">-</span><span class="n">constraint</span><span class="o">-</span><span class="n">state</span><span class="p">,</span><span class="nb">list</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">components</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">inputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">outputs</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">variables</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">functions</span><span class="p">,</span><span class="nb">list</span><span class="o">-</span><span class="n">constraints</span><span class="p">,</span><span class="n">new</span><span class="p">,</span><span class="n">run</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">file</span><span class="p">,</span><span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="nb">object</span><span class="p">}</span>
              <span class="o">...</span>
 </pre></div>
 </div>
@@ -207,10 +220,62 @@
 </pre></div>
 </div>
 </section>
+<section id="get-variable-state">
+<h5>get-variable-state<a class="headerlink" href="#get-variable-state" title="Permalink to this heading"></a></h5>
+<p>get variable state</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">get</span><span class="o">-</span><span class="n">variable</span><span class="o">-</span><span class="n">state</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">var_name</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat1">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat1" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>var_name</kbd></dt>
+<dd><p>variable name</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="get-function-state">
+<h5>get-function-state<a class="headerlink" href="#get-function-state" title="Permalink to this heading"></a></h5>
+<p>get function state</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">get</span><span class="o">-</span><span class="n">function</span><span class="o">-</span><span class="n">state</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">func_name</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat2">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat2" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>func_name</kbd></dt>
+<dd><p>function name</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="get-constraint-state">
+<h5>get-constraint-state<a class="headerlink" href="#get-constraint-state" title="Permalink to this heading"></a></h5>
+<p>get constraint state</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">get</span><span class="o">-</span><span class="n">constraint</span><span class="o">-</span><span class="n">state</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">constr_name</span>
+</pre></div>
+</div>
+<section id="Positional Arguments_repeat3">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat3" title="Permalink to this heading"></a></h6>
+<dl class="option-list">
+<dt><kbd>constr_name</kbd></dt>
+<dd><p>constraint name</p>
+</dd>
+</dl>
+</section>
+</section>
 <section id="list">
 <h5>list<a class="headerlink" href="#list" title="Permalink to this heading"></a></h5>
 <p>list models</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="list-components">
+<h5>list-components<a class="headerlink" href="#list-components" title="Permalink to this heading"></a></h5>
+<p>list all model components</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">list</span><span class="o">-</span><span class="n">components</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
@@ -255,8 +320,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="n">new</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">model_file_path</span>
 </pre></div>
 </div>
-<section id="Positional Arguments_repeat1">
-<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat1" title="Permalink to this heading"></a></h6>
+<section id="Positional Arguments_repeat4">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat4" title="Permalink to this heading"></a></h6>
 <dl class="option-list">
 <dt><kbd>model_file_path</kbd></dt>
 <dd><p>path to model file</p>
@@ -290,8 +355,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">file</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">file_name</span> <span class="n">file_path</span>
 </pre></div>
 </div>
-<section id="Positional Arguments_repeat2">
-<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat2" title="Permalink to this heading"></a></h6>
+<section id="Positional Arguments_repeat5">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat5" title="Permalink to this heading"></a></h6>
 <dl class="option-list">
 <dt><kbd>file_name</kbd></dt>
 <dd><p>name of interface file</p>
@@ -308,8 +373,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mosctl</span> <span class="n">model</span> <span class="nb">set</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="nb">object</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">obj_name</span> <span class="n">obj_data</span>
 </pre></div>
 </div>
-<section id="Positional Arguments_repeat3">
-<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat3" title="Permalink to this heading"></a></h6>
+<section id="Positional Arguments_repeat6">
+<h6>Positional Arguments<a class="headerlink" href="#Positional Arguments_repeat6" title="Permalink to this heading"></a></h6>
 <dl class="option-list">
 <dt><kbd>obj_name</kbd></dt>
 <dd><p>name of interface object</p>
