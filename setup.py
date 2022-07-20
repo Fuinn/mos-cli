@@ -18,4 +18,4 @@ setup(name='mos-cli',
                    'Programming Language :: Python :: 3.6'],
       install_requires=[
             "argparse==1.1",
-            "mos-interface==0.1.0"])
+            "mos-interface==0.1.1"])
