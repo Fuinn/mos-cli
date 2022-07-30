@@ -179,7 +179,7 @@ def create_parser(parent):
     new.add_argument('model_file_path', type=str, help='path to model file')
     def new_func(args):
         i = Interface(url=args.url, token=args.token)
-        i.new_model(args.model_file, quiet=False)
+        i.new_model(args.model_file_path, quiet=False)
     new.set_defaults(func=new_func)
 
     # Run
