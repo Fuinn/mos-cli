@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(name='mos-cli',
       zip_safe=False,
-      version='0.1.0',
+      version='0.1.1',
       author='Fuinn',
       url='https://github.com/Fuinn/mos-cli',
       description='MOS command-line interface',
